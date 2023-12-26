@@ -21,10 +21,17 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::group(['middleware' => 'jwt.auth'], function () {
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('refresh', [AuthController::class, 'refresh']);
-    Route::post('logout', [AuthController::class, 'logout']);
-    Route::get('me', [AuthController::class, 'me']);
+
+    Route::group(['prefix' => 'auth'], function () {
+        Route::post('register', [AuthController::class, 'register']);
+        Route::post('refresh', [AuthController::class, 'refresh']);
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('me', [AuthController::class, 'me']);
+    });
+
 });
-Route::post('login', [AuthController::class, 'login']);
+
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', [AuthController::class, 'login']);
+});
 
