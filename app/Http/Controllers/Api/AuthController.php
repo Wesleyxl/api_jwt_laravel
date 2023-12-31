@@ -32,7 +32,7 @@ class AuthController extends Controller
             'message' => 'User created successfully',
             'user' => $user,
 
-            'authorisation' => [
+            'authorization' => [
                 'token' => $token,
                 'type' => 'bearer',
             ]
@@ -62,12 +62,11 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'user' => $user,
-            'authorisation' => [
+            'authorization' => [
                 'token' => $token,
                 'type' => 'bearer',
             ]
         ]);
-
     }
 
     public function logout()
@@ -85,7 +84,7 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'user' => Auth::guard('api')->user(),
-            'authorisation' => [
+            'authorization' => [
                 'token' => Auth::guard('api')->refresh(),
                 'type' => 'bearer',
             ]
@@ -99,5 +98,4 @@ class AuthController extends Controller
             'user' => Auth::guard('api')->user(),
         ]);
     }
-
 }
