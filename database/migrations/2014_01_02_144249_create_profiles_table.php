@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->string('label')->unique();
-            $table->integer('value');
+            $table->integer('value')->unique();
             $table->text('description')->nullable();
             $table->json('permissions');
             $table->timestamps();
